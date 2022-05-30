@@ -20,6 +20,7 @@ public class Driver {
     public static void main(String[] args) {
         CompressionType type = CompressionType.DCT;
 
-        runCompression(type);
+        InputGenerator.GenerateRandomText(100);
+        //runCompression(type);
     }
 }
