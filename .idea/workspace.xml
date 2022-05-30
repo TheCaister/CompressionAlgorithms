@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0fb5698a-f2ca-46c8-b5db-ec91595c24b9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InputGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InputGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +35,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font"
   }
 }]]></component>
@@ -71,6 +74,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/TreeNode.java</url>
+          <line>23</line>
+          <properties class="TreeNode" method="calculateValue">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
