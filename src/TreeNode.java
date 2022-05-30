@@ -81,7 +81,7 @@ public class TreeNode implements Comparable<TreeNode> {
 
     // Printing out character with their respective code.
     public static void printCode(TreeNode root, String s) {
-        if (root.left == null && root.right == null && root instanceof OccurrenceNode) {
+        if (root instanceof OccurrenceNode) {
 
             System.out.println(((OccurrenceNode) root).getCharacter() + "   |  " + s);
 
