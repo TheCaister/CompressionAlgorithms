@@ -22,16 +22,21 @@ public class Driver {
     public static void main(String[] args) {
         CompressionType type = CompressionType.DCT;
 
-        InputGenerator.GenerateRandomText(100, "test");
+        String input = InputGenerator.GenerateRandomText(5);
 
         OccurrenceNode o1 = new OccurrenceNode('a', 3);
         OccurrenceNode o2 = new OccurrenceNode('b', 2);
         OccurrenceNode o3 = new OccurrenceNode('c', 5);
-        
-        TreeNode n1 = new TreeNode(o1, o2);
-        TreeNode root = new TreeNode(n1, o3);
+        OccurrenceNode o4 = new OccurrenceNode('d', 7);
 
-        System.out.println(root.calculateValue());
+        TreeNode n1 = new TreeNode(o1, o2);
+        TreeNode n2 = new TreeNode(o3, o4);
+        TreeNode root = new TreeNode(n1, n2);
+
+        System.out.println(input);
+        Compression.HuffmanCoding("aaabbc");
+
+        //System.out.println(root.calculateValue());
 
         //runCompression(type);
     }

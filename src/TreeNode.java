@@ -1,4 +1,4 @@
-public class TreeNode {
+public class TreeNode implements Comparable<TreeNode> {
     protected TreeNode left = null;
     protected TreeNode right = null;
     protected int value = 0;
@@ -11,12 +11,12 @@ public class TreeNode {
         this.left = left;
         this.right = right;
     }
+
     public TreeNode(TreeNode left, TreeNode right, int value) {
         this.left = left;
         this.right = right;
         this.value = value;
     }
-
 
 
     // Recursive function for calculating a node's value.
@@ -29,15 +29,15 @@ public class TreeNode {
         // First, it checks the left child to see if there's a node. If there's a node, call the calculateValue function on it for the recursive element.
         // If the left is null, we move on to the right node and repeat.
         // If both are null(current node is a leaf), return its value and propagate up.
-        if(left == null && right == null){
+        if (left == null && right == null) {
             return value;
         }
 
-        if(left != null){
+        if (left != null) {
             leftValue = left.calculateValue();
         }
 
-        if(right != null){
+        if (right != null) {
             rightValue = right.calculateValue();
         }
 
@@ -68,6 +68,29 @@ public class TreeNode {
     public void setRight(TreeNode right) {
         this.right = right;
     }
+
+    @Override
+    public int compareTo(TreeNode o) {
+        return this.value - o.value;
+    }
+
+    @Override
+    public String toString() {
+        return "Value: " + value;
+    }
+
+    // Printing out character with their respective code.
+    public static void printCode(TreeNode root, String s) {
+        if (root.left == null && root.right == null && root instanceof OccurrenceNode) {
+
+            System.out.println(((OccurrenceNode) root).getCharacter() + "   |  " + s);
+
+            return;
+        }
+
+        printCode(root.left, s + "0");
+        printCode(root.right, s + "1");
+    }
 }
 
 /**
@@ -88,5 +111,10 @@ class OccurrenceNode extends TreeNode {
     public OccurrenceNode(char c, int amount) {
         super(amount);
         this.character = c;
+    }
+
+    @Override
+    public String toString() {
+        return "Char: " + character + "\t\tValue: " + value;
     }
 }
