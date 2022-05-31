@@ -8,6 +8,9 @@ public class Compression {
      * @return The encoded form of the input.
      */
     public static String HuffmanEncoding(String input) {
+        HuffmanNode.currentWorkingHuffmanTreeNode = null;
+        HuffmanNode.currentWorkingHuffmanTable = new HashMap<>();
+
         StringBuilder output = new StringBuilder();
 
         // First, make a map of chars with their amounts.
@@ -77,6 +80,7 @@ public class Compression {
 
     /**
      * Decodes an encoded Huffman message.
+     *
      * @param input Encoded Huffman message to be decoded.
      * @return The decoded message.
      */
@@ -111,6 +115,7 @@ public class Compression {
 
     /**
      * Generates the Huffman table using the provided root and an empty String.
+     *
      * @param root The root of the Huffman Tree.
      * @param code The built-up code of a character so far. Use "" as the input for the first call of the method.
      */
@@ -134,7 +139,7 @@ public class Compression {
         generateHuffmanTable(root.right, code + "1");
     }
 
-    public static void calculateHuffmanEfficiency(String input){
+    public static float calculateHuffmanEfficiency(String input) {
         int lengthInput = input.length() * 16;
         int lengthOutput;
         String encodedVersion = HuffmanEncoding(input);
@@ -148,9 +153,31 @@ public class Compression {
 
         System.out.printf("The encoded message is %.2f%% the size of the original message. This is assuming that characters take up 16 bits.\n", percentage);
         System.out.printf("You have saved this many bits: %d.\n", difference);
+
+        return percentage;
     }
 
-    public static void calculateAverageHuffmanStatistics(int minimumSize, int maximumSize, int iterations){
-        
+    public static void calculateAverageHuffmanStatistics(int minimumSize, int maximumSize, int iterations) {
+        int lengthOriginalMessagesSum = 0;
+        int lengthEncodedMessagesSum = 0;
+        float percentagesReducedAverage;
+        float lengthAverageOriginal;
+        float lengthAverageEncoded;
+
+        for (int i = 0; i < iterations; i++) {
+            int randomSize = (int) (Math.random() * (maximumSize - minimumSize)) + minimumSize;
+            String currentInput = InputGenerator.GenerateRandomText(randomSize);
+            lengthOriginalMessagesSum += currentInput.length() * 16;
+            lengthEncodedMessagesSum += Compression.HuffmanEncoding(currentInput).length();
+        }
+
+        lengthAverageOriginal = (float) lengthOriginalMessagesSum / iterations;
+        lengthAverageEncoded = (float) lengthEncodedMessagesSum / iterations;
+        percentagesReducedAverage = 100 * ((float) lengthOriginalMessagesSum - lengthEncodedMessagesSum) / lengthOriginalMessagesSum;
+
+        System.out.printf("Average length of original messages: %f\n", lengthAverageOriginal);
+        System.out.printf("Average length of encoded messages: %f\n", lengthAverageEncoded);
+        System.out.printf("Average percentage reduced: %f%%\n", percentagesReducedAverage);
+
     }
 }

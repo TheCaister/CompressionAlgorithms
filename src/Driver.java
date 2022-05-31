@@ -26,7 +26,7 @@ public class Driver {
     public static void main(String[] args) {
 
         // Generate some sample files.
-        InputGenerator.GenerateRandomText(1000, "test");
+        InputGenerator.GenerateRandomText(10, "test");
         String input = "";
 
         // Assigning "input" to the text in the file.
@@ -48,6 +48,7 @@ public class Driver {
         String encodedHuffmanMessage = Compression.HuffmanEncoding(input);
         System.out.println(encodedHuffmanMessage);
         System.out.println(Compression.HuffmanDecoding(encodedHuffmanMessage));
-        Compression.calculateHuffmanEfficiency(input);
+        //Compression.calculateHuffmanEfficiency(input);
+        Compression.calculateAverageHuffmanStatistics(1000, 5000, 100);
     }
 }
