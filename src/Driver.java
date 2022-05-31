@@ -41,17 +41,18 @@ public class Driver {
             e.printStackTrace();
         }
 
-        OccurrenceNode o1 = new OccurrenceNode('a', 3);
-        OccurrenceNode o2 = new OccurrenceNode('b', 2);
-        OccurrenceNode o3 = new OccurrenceNode('c', 5);
-        OccurrenceNode o4 = new OccurrenceNode('d', 7);
-
-        HuffmanNode n1 = new HuffmanNode(o1, o2);
-        HuffmanNode n2 = new HuffmanNode(o3, o4);
-        HuffmanNode root = new HuffmanNode(n1, n2);
+//        OccurrenceNode o1 = new OccurrenceNode('a', 3);
+//        OccurrenceNode o2 = new OccurrenceNode('b', 2);
+//        OccurrenceNode o3 = new OccurrenceNode('c', 5);
+//        OccurrenceNode o4 = new OccurrenceNode('d', 7);
+//
+//        HuffmanNode n1 = new HuffmanNode(o1, o2);
+//        HuffmanNode n2 = new HuffmanNode(o3, o4);
+//        HuffmanNode root = new HuffmanNode(n1, n2);
 
         //System.out.println(input);
-        Compression.HuffmanCoding(input);
+        //Compression.HuffmanEncoding(input);
+        System.out.println(Compression.HuffmanEncoding(input));
 
         //System.out.println(root.calculateValue());
 

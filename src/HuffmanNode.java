@@ -10,7 +10,7 @@ public class HuffmanNode implements Comparable<HuffmanNode> {
     }
 
     private static HuffmanNode currentWorkingHuffmanTree = null;
-    public static HashMap<Character, String> currentWorkingHuffmanTable = null;
+    public static HashMap<Character, String> currentWorkingHuffmanTable = new HashMap<>();
     protected HuffmanNode left = null;
     protected HuffmanNode right = null;
     protected int value = 0;

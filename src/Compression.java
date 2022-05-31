@@ -9,7 +9,8 @@ public class Compression {
      * @param input
      * @return The encoded form of the input
      */
-    public static String HuffmanCoding(String input) {
+    public static String HuffmanEncoding(String input) {
+        StringBuilder output = new StringBuilder();
         // First, make a map of chars with their amounts
         HashMap<Character, Integer> map = new HashMap<>();
 
@@ -56,10 +57,19 @@ public class Compression {
         }
 
         HuffmanNode.printCode(root, "");
-        return "";
+
+        generateHuffmanEncoded(root, "");
+
+        HashMap<Character, String> huffmanTable = HuffmanNode.currentWorkingHuffmanTable;
+
+        for(int i = 0; i < input.length(); i++){
+            output.append(huffmanTable.get(input.charAt(i)));
+        }
+
+        return output.toString();
     }
 
-    private void generateHuffmanEncoded(HuffmanNode root, String s){
+    private static void generateHuffmanEncoded(HuffmanNode root, String s){
         HashMap<Character, String> map = HuffmanNode.currentWorkingHuffmanTable;
 
         if (root instanceof OccurrenceNode) {
