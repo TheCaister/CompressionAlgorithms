@@ -139,7 +139,13 @@ public class Compression {
         generateHuffmanTable(root.right, code + "1");
     }
 
+    /**
+     * Calculating efficiency of Huffman coding for a single instance.
+     * @param input Message to be used for benchmarking.
+     * @return The percentage of the encoded message size.
+     */
     public static float calculateHuffmanEfficiency(String input) {
+        // Java chars take up 16 bits.
         int lengthInput = input.length() * 16;
         int lengthOutput;
         String encodedVersion = HuffmanEncoding(input);
@@ -157,6 +163,14 @@ public class Compression {
         return percentage;
     }
 
+    /**
+     * Calculating average statistics for Huffman coding using Strings of random lengths in a range
+     * and repeated for a certain amount of iterations.
+     * @param minimumSize Minimum input message size range.
+     * @param maximumSize Maximum input message size range.
+     * @param iterations The amount of times to generate a random String in the length range and process it,
+     *                   contributing to the overall averages.
+     */
     public static void calculateAverageHuffmanStatistics(int minimumSize, int maximumSize, int iterations) {
         int lengthOriginalMessagesSum = 0;
         int lengthEncodedMessagesSum = 0;
