@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Driver {
     enum CompressionType{
         HUFFMAN,
@@ -22,7 +26,17 @@ public class Driver {
     public static void main(String[] args) {
         CompressionType type = CompressionType.DCT;
 
-        String input = InputGenerator.GenerateRandomText(5);
+        InputGenerator.GenerateRandomText(100, "test");
+        String input = "cztqs";
+
+        try{
+            String fileName = "";
+            File file = new File("inputs/" + fileName + ".txt");
+            Scanner reader = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error");
+            e.printStackTrace();
+        }
 
         OccurrenceNode o1 = new OccurrenceNode('a', 3);
         OccurrenceNode o2 = new OccurrenceNode('b', 2);
@@ -33,8 +47,8 @@ public class Driver {
         TreeNode n2 = new TreeNode(o3, o4);
         TreeNode root = new TreeNode(n1, n2);
 
-        System.out.println(input);
-        Compression.HuffmanCoding("aaabbc");
+        //System.out.println(input);
+        Compression.HuffmanCoding(input);
 
         //System.out.println(root.calculateValue());
 

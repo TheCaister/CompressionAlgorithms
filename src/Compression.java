@@ -3,9 +3,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Compression {
-    public static String HuffmanCoding(String input) {
-        StringBuilder builder = new StringBuilder();
-
+    public static void HuffmanCoding(String input) {
         // First, make a map of chars with their amounts
         HashMap<Character, Integer> map = new HashMap<>();
 
@@ -51,8 +49,6 @@ public class Compression {
             queue.add(n);
         }
 
-
         TreeNode.printCode(root, "");
-        return builder.toString();
     }
 }
