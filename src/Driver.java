@@ -11,7 +11,7 @@ public class Driver {
 
     /**
      * Runs different compression algorithms based on the type the user passes in.
-     * @param type
+     * @param type Type of compression the user wishes to run.
      */
     public static void runCompression(CompressionType type){
         switch(type){
@@ -24,11 +24,12 @@ public class Driver {
     }
 
     public static void main(String[] args) {
-        CompressionType type = CompressionType.DCT;
 
+        // Generate some sample files.
         InputGenerator.GenerateRandomText(1000, "test");
-        String input = "cztqs";
+        String input = "";
 
+        // Assigning "input" to the text in the file.
         try{
             String fileName = "test";
             File file = new File("inputs/" + fileName + ".txt");
@@ -41,21 +42,11 @@ public class Driver {
             e.printStackTrace();
         }
 
-//        OccurrenceNode o1 = new OccurrenceNode('a', 3);
-//        OccurrenceNode o2 = new OccurrenceNode('b', 2);
-//        OccurrenceNode o3 = new OccurrenceNode('c', 5);
-//        OccurrenceNode o4 = new OccurrenceNode('d', 7);
-//
-//        HuffmanNode n1 = new HuffmanNode(o1, o2);
-//        HuffmanNode n2 = new HuffmanNode(o3, o4);
-//        HuffmanNode root = new HuffmanNode(n1, n2);
+        input = "Hello there. My name is Jonathan. How are you doing today?";
 
-        //System.out.println(input);
-        //Compression.HuffmanEncoding(input);
-        System.out.println(Compression.HuffmanEncoding(input));
-
-        //System.out.println(root.calculateValue());
-
-        //runCompression(type);
+        // Testing out Huffman encoding and decoding.
+        String encodedHuffmanMessage = Compression.HuffmanEncoding(input);
+        System.out.println(encodedHuffmanMessage);
+        System.out.println(Compression.HuffmanDecoding(encodedHuffmanMessage));
     }
 }

@@ -13,11 +13,20 @@ public class InputGenerator {
      * @param size The amount of characters you want the final text
      *             file to include.
      */
-    public static void GenerateRandomText(int size, String fileName){
+
+    /**
+     * Generates a text file with random characters.
+     *
+     * @param size     The amount of characters you want the final text
+     *                 file to include.
+     * @param fileName The name of the file that will be created.
+     */
+    public static void GenerateRandomText(int size, String fileName) {
+        // Store files in the "inputs" folder.
         fileName = "inputs/" + fileName + ".txt";
-        try{
+        try {
             File file = new File(fileName);
-            if(file.createNewFile()){
+            if (file.createNewFile()) {
                 System.out.println("File successfully created: " + file.getName());
             }
         } catch (IOException e) {
@@ -25,11 +34,11 @@ public class InputGenerator {
             e.printStackTrace();
         }
 
-        try{
+        try {
             Random random = new Random();
             FileWriter writer = new FileWriter(fileName);
             // Getting a random character
-            for(int i = 0; i < size; i++){
+            for (int i = 0; i < size; i++) {
                 char randomCharacter = (char) (random.nextInt(26) + 'a');
                 writer.write(randomCharacter);
             }
@@ -39,10 +48,10 @@ public class InputGenerator {
             e.printStackTrace();
         }
 
-        try{
+        try {
             File file = new File(fileName);
             Scanner reader = new Scanner(file);
-            while(reader.hasNextLine()){
+            while (reader.hasNextLine()) {
                 System.out.println(fileName + ": " + reader.nextLine());
             }
 
@@ -50,16 +59,21 @@ public class InputGenerator {
             System.out.println("An error occurred when trying to read file.");
             e.printStackTrace();
         }
-
-
     }
 
-    public static String GenerateRandomText(int size){
+    /**
+     * Generates and returns a String of random characters.
+     *
+     * @param size The amount of characters you want the final text
+     *             file to include.
+     * @return A String of random characters.
+     */
+    public static String GenerateRandomText(int size) {
         StringBuilder builder = new StringBuilder();
         Random random = new Random();
 
         // Getting a random character
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             char randomCharacter = (char) (random.nextInt(26) + 'a');
             builder.append(randomCharacter);
         }

@@ -2,16 +2,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-
 public class Compression {
     /**
-     *
-     * @param input
-     * @return The encoded form of the input
+     * @param input The original message that you want to encode.
+     * @return The encoded form of the input.
      */
     public static String HuffmanEncoding(String input) {
         StringBuilder output = new StringBuilder();
-        // First, make a map of chars with their amounts
+
+        // First, make a map of chars with their amounts.
         HashMap<Character, Integer> map = new HashMap<>();
 
         for (int i = 0; i < input.length(); i++) {
@@ -28,7 +27,8 @@ public class Compression {
             System.out.printf("%c\t:\t%d\n", entry.getKey(), entry.getValue());
         }
 
-        // Map of char/int pairings.
+        // Place the nodes entries of the HashMap into a Priority Queue so that they
+        // can be sorted by value.
         PriorityQueue<HuffmanNode> queue = new PriorityQueue<>(map.size());
 
         // Converting pairings to tree nodes and adding it to the priority queue.
@@ -43,9 +43,11 @@ public class Compression {
             System.out.println(printQueue.poll());
         }
 
+        // Now, we start the generation of the tree, starting with an empty "root" node.
         HuffmanNode root = null;
 
-        // Keep taking the next 2 nodes and create a parents with their sums.
+        // Keep taking the next 2 nodes and create a parent node with their sums.
+        // Add this parent to the queue as well, constantly updating "root" along the way.
         while (queue.size() > 1) {
             HuffmanNode x = queue.poll();
             HuffmanNode y = queue.poll();
@@ -58,34 +60,77 @@ public class Compression {
 
         HuffmanNode.printCode(root, "");
 
-        generateHuffmanEncoded(root, "");
+        generateHuffmanTable(root, "");
 
+        HuffmanNode.currentWorkingHuffmanTreeNode = root;
+
+        // Start the encoding process once we have the Huffman table prepared, appending
+        // the codes to the output and then returning it.
         HashMap<Character, String> huffmanTable = HuffmanNode.currentWorkingHuffmanTable;
 
-        for(int i = 0; i < input.length(); i++){
+        for (int i = 0; i < input.length(); i++) {
             output.append(huffmanTable.get(input.charAt(i)));
         }
 
         return output.toString();
     }
 
-    private static void generateHuffmanEncoded(HuffmanNode root, String s){
+    /**
+     * Decodes an encoded Huffman message.
+     * @param input Encoded Huffman message to be decoded.
+     * @return The decoded message.
+     */
+    public static String HuffmanDecoding(String input) {
+        // Getting a reference to the root of the tree because we'll be coming back
+        // here numerous times as we decode more characters.
+        HuffmanNode root = HuffmanNode.currentWorkingHuffmanTreeNode;
+
+        // Using "currentNode" to traverse the Huffman Tree.
+        HuffmanNode currentNode = root;
+        StringBuilder output = new StringBuilder();
+
+
+        for (int i = 0; i < input.length(); i++) {
+            // Then, we go to either the left/right children depending on what the encoded message says.
+            if (input.charAt(i) == '0') {
+                currentNode = currentNode.getLeft();
+            } else if (input.charAt(i) == '1') {
+                currentNode = currentNode.getRight();
+            }
+
+            // If we hit an "OccurrenceNode", add its character to the output and continue.
+            if (currentNode instanceof OccurrenceNode) {
+                output.append(((OccurrenceNode) currentNode).getCharacter());
+                currentNode = root;
+            }
+        }
+
+        return output.toString();
+
+    }
+
+    /**
+     * Generates the Huffman table using the provided root and an empty String.
+     * @param root The root of the Huffman Tree.
+     * @param code The built-up code of a character so far. Use "" as the input for the first call of the method.
+     */
+    private static void generateHuffmanTable(HuffmanNode root, String code) {
         HashMap<Character, String> map = HuffmanNode.currentWorkingHuffmanTable;
 
         if (root instanceof OccurrenceNode) {
             char current = ((OccurrenceNode) root).getCharacter();
 
-            if(map.containsKey(current)){
-                map.put(current, map.get(current) + s);
+            if (map.containsKey(current)) {
+                map.put(current, map.get(current) + code);
             } else {
-                map.put(current, s);
+                map.put(current, code);
             }
 
-            System.out.println(((OccurrenceNode) root).getCharacter() + "   |  " + s);
+            System.out.println(((OccurrenceNode) root).getCharacter() + "   |  " + code);
             return;
         }
 
-        generateHuffmanEncoded(root.left, s + "0");
-        generateHuffmanEncoded(root.right, s + "1");
+        generateHuffmanTable(root.left, code + "0");
+        generateHuffmanTable(root.right, code + "1");
     }
 }

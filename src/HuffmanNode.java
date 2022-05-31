@@ -1,16 +1,11 @@
 import java.util.HashMap;
 
 public class HuffmanNode implements Comparable<HuffmanNode> {
-    public static HuffmanNode getCurrentWorkingHuffmanTree() {
-        return currentWorkingHuffmanTree;
-    }
 
-    public static void setCurrentWorkingHuffmanTree(HuffmanNode currentWorkingHuffmanTree) {
-        HuffmanNode.currentWorkingHuffmanTree = currentWorkingHuffmanTree;
-    }
-
-    private static HuffmanNode currentWorkingHuffmanTree = null;
+    // Maintain a global table and root for the Huffman Tree.
+    public static HuffmanNode currentWorkingHuffmanTreeNode = null;
     public static HashMap<Character, String> currentWorkingHuffmanTable = new HashMap<>();
+
     protected HuffmanNode left = null;
     protected HuffmanNode right = null;
     protected int value = 0;
@@ -91,17 +86,21 @@ public class HuffmanNode implements Comparable<HuffmanNode> {
         return "Value: " + value;
     }
 
-    // Printing out character with their respective code.
-    public static void printCode(HuffmanNode root, String s) {
+    /**
+     * Printing out character with their respective codes.
+     * @param root The root node of the Huffman Tree.
+     * @param code The code of a character. This will be built up during the recursive calls.
+     */
+    public static void printCode(HuffmanNode root, String code) {
         if (root instanceof OccurrenceNode) {
 
-            System.out.println(((OccurrenceNode) root).getCharacter() + "   |  " + s);
+            System.out.println(((OccurrenceNode) root).getCharacter() + "   |  " + code);
 
             return;
         }
 
-        printCode(root.left, s + "0");
-        printCode(root.right, s + "1");
+        printCode(root.left, code + "0");
+        printCode(root.right, code + "1");
     }
 }
 
