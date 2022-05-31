@@ -1,18 +1,30 @@
-public class TreeNode implements Comparable<TreeNode> {
-    protected TreeNode left = null;
-    protected TreeNode right = null;
+import java.util.HashMap;
+
+public class HuffmanNode implements Comparable<HuffmanNode> {
+    public static HuffmanNode getCurrentWorkingHuffmanTree() {
+        return currentWorkingHuffmanTree;
+    }
+
+    public static void setCurrentWorkingHuffmanTree(HuffmanNode currentWorkingHuffmanTree) {
+        HuffmanNode.currentWorkingHuffmanTree = currentWorkingHuffmanTree;
+    }
+
+    private static HuffmanNode currentWorkingHuffmanTree = null;
+    public static HashMap<Character, String> currentWorkingHuffmanTable = null;
+    protected HuffmanNode left = null;
+    protected HuffmanNode right = null;
     protected int value = 0;
 
-    public TreeNode(int value) {
+    public HuffmanNode(int value) {
         this.value = value;
     }
 
-    public TreeNode(TreeNode left, TreeNode right) {
+    public HuffmanNode(HuffmanNode left, HuffmanNode right) {
         this.left = left;
         this.right = right;
     }
 
-    public TreeNode(TreeNode left, TreeNode right, int value) {
+    public HuffmanNode(HuffmanNode left, HuffmanNode right, int value) {
         this.left = left;
         this.right = right;
         this.value = value;
@@ -53,24 +65,24 @@ public class TreeNode implements Comparable<TreeNode> {
     }
 
 
-    public TreeNode getLeft() {
+    public HuffmanNode getLeft() {
         return left;
     }
 
-    public void setLeft(TreeNode left) {
+    public void setLeft(HuffmanNode left) {
         this.left = left;
     }
 
-    public TreeNode getRight() {
+    public HuffmanNode getRight() {
         return right;
     }
 
-    public void setRight(TreeNode right) {
+    public void setRight(HuffmanNode right) {
         this.right = right;
     }
 
     @Override
-    public int compareTo(TreeNode o) {
+    public int compareTo(HuffmanNode o) {
         return this.value - o.value;
     }
 
@@ -80,7 +92,7 @@ public class TreeNode implements Comparable<TreeNode> {
     }
 
     // Printing out character with their respective code.
-    public static void printCode(TreeNode root, String s) {
+    public static void printCode(HuffmanNode root, String s) {
         if (root instanceof OccurrenceNode) {
 
             System.out.println(((OccurrenceNode) root).getCharacter() + "   |  " + s);
@@ -96,7 +108,7 @@ public class TreeNode implements Comparable<TreeNode> {
 /**
  * Stores a character and how many times it has occurred.
  */
-class OccurrenceNode extends TreeNode {
+class OccurrenceNode extends HuffmanNode {
 
     private char character;
 

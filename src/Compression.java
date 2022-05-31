@@ -2,8 +2,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+
 public class Compression {
-    public static void HuffmanCoding(String input) {
+    /**
+     *
+     * @param input
+     * @return The encoded form of the input
+     */
+    public static String HuffmanCoding(String input) {
         // First, make a map of chars with their amounts
         HashMap<Character, Integer> map = new HashMap<>();
 
@@ -22,7 +28,7 @@ public class Compression {
         }
 
         // Map of char/int pairings.
-        PriorityQueue<TreeNode> queue = new PriorityQueue<>(map.size());
+        PriorityQueue<HuffmanNode> queue = new PriorityQueue<>(map.size());
 
         // Converting pairings to tree nodes and adding it to the priority queue.
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
@@ -30,25 +36,46 @@ public class Compression {
             queue.add(node);
         }
 
-        PriorityQueue<TreeNode> printQueue = new PriorityQueue<>(queue);
+        PriorityQueue<HuffmanNode> printQueue = new PriorityQueue<>(queue);
         System.out.println("Entries in order:");
         while (printQueue.size() != 0) {
             System.out.println(printQueue.poll());
         }
 
-        TreeNode root = null;
+        HuffmanNode root = null;
 
         // Keep taking the next 2 nodes and create a parents with their sums.
         while (queue.size() > 1) {
-            TreeNode x = queue.poll();
-            TreeNode y = queue.poll();
+            HuffmanNode x = queue.poll();
+            HuffmanNode y = queue.poll();
 
-            TreeNode n = new TreeNode(x, y, x.value + y.value);
+            HuffmanNode n = new HuffmanNode(x, y, x.value + y.value);
             root = n;
 
             queue.add(n);
         }
 
-        TreeNode.printCode(root, "");
+        HuffmanNode.printCode(root, "");
+        return "";
+    }
+
+    private void generateHuffmanEncoded(HuffmanNode root, String s){
+        HashMap<Character, String> map = HuffmanNode.currentWorkingHuffmanTable;
+
+        if (root instanceof OccurrenceNode) {
+            char current = ((OccurrenceNode) root).getCharacter();
+
+            if(map.containsKey(current)){
+                map.put(current, map.get(current) + s);
+            } else {
+                map.put(current, s);
+            }
+
+            System.out.println(((OccurrenceNode) root).getCharacter() + "   |  " + s);
+            return;
+        }
+
+        generateHuffmanEncoded(root.left, s + "0");
+        generateHuffmanEncoded(root.right, s + "1");
     }
 }
