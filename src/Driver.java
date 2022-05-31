@@ -42,11 +42,12 @@ public class Driver {
             e.printStackTrace();
         }
 
-        input = "Hello there. My name is Jonathan. How are you doing today?";
+        //input = "Hello there. My name is Jonathan. How are you doing today?";
 
         // Testing out Huffman encoding and decoding.
         String encodedHuffmanMessage = Compression.HuffmanEncoding(input);
         System.out.println(encodedHuffmanMessage);
         System.out.println(Compression.HuffmanDecoding(encodedHuffmanMessage));
+        Compression.calculateHuffmanEfficiency(input);
     }
 }

@@ -6,8 +6,6 @@
       <change beforePath="$PROJECT_DIR$/inputs/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/inputs/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HuffmanNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HuffmanNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InputGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +80,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Compression.java</url>
-          <line>96</line>
+          <line>94</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

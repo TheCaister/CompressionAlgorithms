@@ -133,4 +133,24 @@ public class Compression {
         generateHuffmanTable(root.left, code + "0");
         generateHuffmanTable(root.right, code + "1");
     }
+
+    public static void calculateHuffmanEfficiency(String input){
+        int lengthInput = input.length() * 16;
+        int lengthOutput;
+        String encodedVersion = HuffmanEncoding(input);
+        lengthOutput = encodedVersion.length();
+
+        int difference = lengthInput - lengthOutput;
+        float percentage = 100 * (float) lengthOutput / lengthInput;
+
+        System.out.printf("Length of the message without encoding: %d\n", lengthInput);
+        System.out.printf("Length of the message after encoding: %d\n", lengthOutput);
+
+        System.out.printf("The encoded message is %.2f%% the size of the original message. This is assuming that characters take up 16 bits.\n", percentage);
+        System.out.printf("You have saved this many bits: %d.\n", difference);
+    }
+
+    public static void calculateAverageHuffmanStatistics(int minimumSize, int maximumSize, int iterations){
+        
+    }
 }
