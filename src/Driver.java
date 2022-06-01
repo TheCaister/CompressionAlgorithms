@@ -54,7 +54,7 @@ public class Driver {
         System.out.println(encodedHuffmanMessage);
         System.out.println(Compression.HuffmanDecoding(encodedHuffmanMessage));
         //Compression.calculateHuffmanEfficiency(input);
-        Compression.calculateAverageHuffmanStatistics(1000, 5000, 100);
+        //Compression.calculateAverageHuffmanStatistics(1000, 5000, 100);
 
         String filename = "fortnite";
         File file = null;
@@ -68,6 +68,16 @@ public class Driver {
             System.out.println(e);
         }
 
-        Compression.DCTEncoding(image);
+        try{
+            file = ImageProcessing.generateFile(file.getName());
+            String[] splitFromExtension = file.getName().split("\\.");
+            String fileType = splitFromExtension[splitFromExtension.length - 1];
+
+            image = Compression.DCTEncoding(image);
+            ImageIO.write(image, fileType, file);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

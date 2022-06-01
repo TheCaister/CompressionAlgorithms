@@ -1,16 +1,59 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 import com.thecaister.imageprocessing.ImageProcessing;
 
 public class Compression {
-    public static void DCTEncoding(BufferedImage image){
+    public static BufferedImage DCTEncoding(BufferedImage image){
+        ArrayList<Integer[][]> allChunks = new ArrayList<>();
         // First, we will split the image into 8x8 chunks.
-        // Make sure that the image is divisible by 8.
-        int inputX = image.getWidth() + (8 - (image.getWidth() % 8));
-        int inputY = image.getHeight()  + (8 - (image.getHeight() % 8));
+        // Make sure that the image is divisible by 8 through padding.
+        // 33 should turn into 40, 23 should turn into 24, etc.
+        int initImageWidth;
+        int initImageHeight;
+
+        initImageWidth = image.getWidth();
+        initImageHeight = image.getHeight();
+
+        int inputX = initImageWidth % 8 == 0 ? initImageWidth : initImageWidth + (8 - (initImageWidth % 8));
+        int inputY = initImageHeight % 8 == 0 ? initImageHeight : initImageHeight + (8 - (initImageHeight % 8));
+        int maxChunksX = inputX / 8;
+        int maxChunksY = inputY / 8;
+        int chunkAmount = maxChunksX * maxChunksY;
+
+        // Initialising
+        for(int i = 0; i < chunkAmount; i++){
+            allChunks.add(new Integer[8][8]);
+        }
+
+        // Split into chunks to be placed into "allChunks". I'll try to do this without the use of if statements.
+        for(int i = 0; i < inputX; i++){
+            for(int j = 0; j < inputY; j++){
+                int currentChunkX = i / 8;
+                int currentChunkY = j / 8;
+                int currentChunkIndex = currentChunkX + (currentChunkY * maxChunksX);
+
+                allChunks.get(currentChunkIndex)[i % 8][j % 8] = image.getRGB(i, j);
+            }
+        }
+
+        // Rebuilding image from "allChunks"
+        for(int i = 0; i < allChunks.size(); i++){
+            int currentChunkX = i % maxChunksX;
+            int currentChunkY = i / maxChunksY;
+            for(int j = 0; j < 8; j++){
+                for(int k = 0; k < 8; k++){
+                    int pixelX = currentChunkX * 8;
+                    int pixelY = currentChunkY * 8;
+                    image.setRGB(pixelX, pixelY, allChunks.get(i)[j][k] + 23);
+                }
+            }
+        }
+
+        return image;
     }
 
     /**
