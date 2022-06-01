@@ -1,8 +1,18 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
+import com.thecaister.imageprocessing.ImageProcessing;
 
 public class Compression {
+    public static void DCTEncoding(BufferedImage image){
+        // First, we will split the image into 8x8 chunks.
+        // Make sure that the image is divisible by 8.
+        int inputX = image.getWidth() + (8 - (image.getWidth() % 8));
+        int inputY = image.getHeight()  + (8 - (image.getHeight() % 8));
+    }
+
     /**
      * @param input The original message that you want to encode.
      * @return The encoded form of the input.
@@ -141,6 +151,7 @@ public class Compression {
 
     /**
      * Calculating efficiency of Huffman coding for a single instance.
+     *
      * @param input Message to be used for benchmarking.
      * @return The percentage of the encoded message size.
      */
@@ -166,10 +177,11 @@ public class Compression {
     /**
      * Calculating average statistics for Huffman coding using Strings of random lengths in a range
      * and repeated for a certain amount of iterations.
+     *
      * @param minimumSize Minimum input message size range.
      * @param maximumSize Maximum input message size range.
-     * @param iterations The amount of times to generate a random String in the length range and process it,
-     *                   contributing to the overall averages.
+     * @param iterations  The amount of times to generate a random String in the length range and process it,
+     *                    contributing to the overall averages.
      */
     public static void calculateAverageHuffmanStatistics(int minimumSize, int maximumSize, int iterations) {
         int lengthOriginalMessagesSum = 0;

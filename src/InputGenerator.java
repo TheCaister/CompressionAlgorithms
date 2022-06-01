@@ -8,13 +8,6 @@ import java.util.Scanner;
 public class InputGenerator {
 
     /**
-     * Generates a text file with random characters
-     *
-     * @param size The amount of characters you want the final text
-     *             file to include.
-     */
-
-    /**
      * Generates a text file with random characters.
      *
      * @param size     The amount of characters you want the final text

@@ -88,6 +88,7 @@ public class HuffmanNode implements Comparable<HuffmanNode> {
 
     /**
      * Printing out character with their respective codes.
+     *
      * @param root The root node of the Huffman Tree.
      * @param code The code of a character. This will be built up during the recursive calls.
      */
