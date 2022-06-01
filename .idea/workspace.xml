@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0fb5698a-f2ca-46c8-b5db-ec91595c24b9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/fortnite_0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/fortnite_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/fortnite_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/fortnite_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/fortnite_4.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/inputs/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/inputs/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,9 +95,18 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Driver.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/src/Compression.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Compression.java</url>
+          <line>64</line>
+          <properties class="Compression" method="processDCTChunk">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

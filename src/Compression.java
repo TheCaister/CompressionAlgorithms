@@ -29,7 +29,7 @@ public class Compression {
             allChunks.add(new Integer[8][8]);
         }
 
-        // Split into chunks to be placed into "allChunks". I'll try to do this without the use of if statements.
+        // Split into chunks to be placed into "allChunks".
         for(int i = 0; i < inputX; i++){
             for(int j = 0; j < inputY; j++){
                 int currentChunkX = i / 8;
@@ -40,20 +40,56 @@ public class Compression {
             }
         }
 
+        for (int i = 0; i < allChunks.size(); i++) {
+            int pixelX = ((i % maxChunksX) * 8);
+            int pixelY = ((i / maxChunksY) * 8);
+            processDCTChunk(allChunks.get(i), pixelX, pixelY, inputX, inputY);
+        }
+
         // Rebuilding image from "allChunks"
         for(int i = 0; i < allChunks.size(); i++){
             int currentChunkX = i % maxChunksX;
             int currentChunkY = i / maxChunksY;
             for(int j = 0; j < 8; j++){
                 for(int k = 0; k < 8; k++){
-                    int pixelX = currentChunkX * 8;
-                    int pixelY = currentChunkY * 8;
-                    image.setRGB(pixelX, pixelY, allChunks.get(i)[j][k] + 23);
+                    int pixelX = (currentChunkX * 8) + j;
+                    int pixelY = (currentChunkY * 8) + k;
+                    image.setRGB(pixelX, pixelY, allChunks.get(i)[j][k]);
                 }
             }
         }
 
         return image;
+    }
+
+    public static void processDCTChunk(Integer[][] chunk, int chunkX, int chunkY, int imageWidth, int imageHeight){
+        double pi = Math.PI;
+        double bpq, ap, aq, amn;
+        int imageX, imageY;
+
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                imageX = chunkX + i;
+                imageY = chunkY + j;
+
+                chunk[i][j] -= 0x80000000;
+
+                // Calculating ap and aq
+                if(imageX == 0){
+                    ap = 1 / Math.sqrt(imageWidth);
+                }else{
+                    ap = Math.sqrt(2 / imageWidth);
+                }
+
+                if(imageY == 0){
+                    aq = 1 / Math.sqrt(imageHeight);
+                }else{
+                    aq = Math.sqrt(2 / imageHeight);
+                }
+            }
+        }
+
+        return;
     }
 
     /**
